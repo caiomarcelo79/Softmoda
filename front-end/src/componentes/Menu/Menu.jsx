@@ -1,9 +1,11 @@
+import './Menu.css'
+
 function Menu(){
 
   return(
-    <div className="bg-body-gray">
-      <h1>Menu</h1>
-      <ul>
+    <div>
+      <h1 className='ms-4'>Menu</h1>
+      <ul className='btn-menu'>
         <li><a href="/inventario">Inventário/Estoque</a></li>
         <li><a href="/vendas">Histórico de vendas</a></li>
         <li><a href="/clientes">Clientes cadastrados</a></li>

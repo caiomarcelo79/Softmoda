@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
-import Menu from './componentes/Menu'
+import Menu from './componentes/Menu/Menu'
 import Navbar from './componentes/Navbar'
 
 
@@ -9,7 +9,7 @@ import Navbar from './componentes/Navbar'
 function App() {
 
   return (
-    <>
+    <div>
       <Navbar/>
       <div className="row">
 
@@ -22,7 +22,7 @@ function App() {
     
       </div>
       
-    </>
+    </div>
   )
 }
 
