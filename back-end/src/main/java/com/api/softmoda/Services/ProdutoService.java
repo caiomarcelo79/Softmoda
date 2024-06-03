@@ -33,5 +33,23 @@ public class ProdutoService {
     }
   }
 
+  public ResponseEntity<?> alterar(ProdutoModel pm){
+    if (pm.getNome().equals("") || pm.getCor().equals("") || pm.getTamanho().equals("") || pm.getValor().equals(null) || pm.getQuantidade().equals(null)) {
+      em.setMensagem("Erro ao cadastrar");
+      return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
+    }else{
+      em.setMensagem("Nenhum erro ocorreu");
+      return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.OK);
+    }
+  }
+
+  public ResponseEntity<?> remover(long id){
+    pr.deleteById(id);
+
+    em.setMensagem("Nenhum erro ocorreu");
+    return new ResponseEntity<ErroModel>(em, HttpStatus.OK);
+
+  }
+
 
 }

@@ -1,4 +1,42 @@
+import { useEffect, useState } from "react"
+
 function Inventario(){
+
+  const produto = {
+    id: 0,
+    nome: "",
+    cor: "",
+    tamanho: "",
+    valor: 0.00,
+    quatidade: 0
+  }
+
+
+  const [objProduto, setObjProduto] = useState(produto)
+  const [produtos, setProdutos] = useState([])
+
+
+  useEffect(()=>{
+    fetch("http://localhost:8080/listar")
+    .then(retorno => retorno.json())
+    .then(retorno_convertido => setProdutos(retorno_convertido))
+  }, [])
+
+  function Cadastrar(){
+
+  }
+  
+
+  const [search, setSearch] = useState("")
+
+  const pesquisa = function(event){
+    setSearch(event.target.value)
+  }
+
+
+  const produtosSCH = produtos.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
+
+  console.log(search)
 
   return(
     <div>
@@ -20,6 +58,13 @@ function Inventario(){
         <input type="button" value='Cadastrar' className="btn btn-primary"/>
       </form>
       <br/>
+      
+      <input
+      type="search"
+      value={search}
+      onChange={pesquisa}
+      />
+
       <table className="table">
         <thead>
           <tr>
@@ -28,7 +73,6 @@ function Inventario(){
             <th>Quantidade</th>
             <th>Cor</th>
             <th>Valor</th>
-            <th>N°_Vendas</th>
             <th>Tamanho</th>
             <th></th>
             <th></th>
@@ -36,30 +80,20 @@ function Inventario(){
         </thead>
 
         <tbody>
-          
-          <tr key="Produto">
-            <th>468236</th>
-            <th>Calça</th>
-            <th>7</th>
-            <th>Jeans</th>
-            <th>99,99</th>
-            <th>13</th>
-            <th>42</th>
-            <th><button className="btn btn-warning">Alterar</button></th>
-            <th><button className="btn btn-danger">Excluir</button></th>
-          </tr>
-
-          <tr key="Produto">
-            <th>563535</th>
-            <th>Camisa</th>
-            <th>4</th>
-            <th>Vermelho</th>
-            <th>79,99</th>
-            <th>17</th>
-            <th>M</th>
-            <th><button className="btn btn-warning">Alterar</button></th>
-            <th><button className="btn btn-danger">Excluir</button></th>
-          </tr>
+          {
+            produtosSCH.map((obj)=>(
+              <tr key={obj.nome}>
+                <th>{obj.id}</th>
+                <th>{obj.nome}</th>
+                <th>{obj.quantidade}</th>
+                <th>{obj.cor}</th>
+                <th>{obj.valor}</th>
+                <th>{obj.tamanho}</th>
+                <th><button className="btn btn-warning">Alterar</button></th>
+                <th><button className="btn btn-danger">Excluir</button></th>
+              </tr>
+            ))
+          }
 
         </tbody>
       </table>

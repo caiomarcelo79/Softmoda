@@ -9,8 +9,10 @@ import com.api.softmoda.Models.ProdutoModel;
 import com.api.softmoda.Services.ProdutoService;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 
@@ -26,6 +28,16 @@ public class ProdutoController {
   @PostMapping("/cadastrar")
   public ResponseEntity<?> cadastrar(@RequestBody ProdutoModel pm){
     return ps.cadastrar(pm);
+  }
+
+  @PutMapping("/alterar")
+  public ResponseEntity<?> alterar(@RequestBody ProdutoModel pm){
+    return ps.alterar(pm);
+  }
+  
+  @PutMapping("/remover")
+  public ResponseEntity<?> remover(@PathVariable long id){
+    return ps.remover(id);
   }
   
   @GetMapping("/listar")
