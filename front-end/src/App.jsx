@@ -12,16 +12,13 @@ function App() {
     <div>
       <Navbar/>
       <div className="row">
-
         <div className="col-3">
         <Menu/>
         </div>
         <div className="col-9">
           <Outlet/>
         </div>
-    
       </div>
-      
     </div>
   )
 }

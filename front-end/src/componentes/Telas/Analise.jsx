@@ -1,10 +1,54 @@
-function Analise(){
+import { useEffect, useRef } from "react"
 
-  return(
-    <div className="bg-body-gray2">
-      <h1>Analise</h1>
+
+function Analise() {
+  const canvasRef = useRef(null)
+  const chartRef = useRef(null)
+
+  useEffect(() => {
+    const ctx = canvasRef.current
+
+    console.log(ctx)
+
+    chartRef.current = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        datasets: [{
+          label: 'Vendas 2024',
+          data: [12, 19, 18, 16, 15, 19, 25, 14, 20, 23,20, 30],
+          borderWidth: 7,
+          borderColor: '#9b0000',
+          backgroundColor: '#9b0000bb',
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    })
+
+    return () => {
+      chartRef.current.destroy()
+    }
+  }, []);
+
+
+  const grafico = {
+    width: "70vw",
+  }
+
+  return (
+    <div>
+      <h1>Análise</h1>
+      <div style={grafico}>
+        <canvas ref={canvasRef}></canvas>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Analise
+export default Analise;
