@@ -1,4 +1,4 @@
-package com.softmoda.softmoda;
+package com.api.softmoda;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
