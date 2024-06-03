@@ -2,15 +2,15 @@ import { useEffect, useRef } from "react"
 
 
 function Analise() {
-  const canvasRef = useRef(null)
-  const chartRef = useRef(null)
+  const telaRef = useRef(null)
+  const graficoRef = useRef(null)
 
   useEffect(() => {
-    const ctx = canvasRef.current
+    const ctx = telaRef.current
 
     console.log(ctx)
 
-    chartRef.current = new Chart(ctx, {
+    graficoRef.current = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
@@ -32,9 +32,9 @@ function Analise() {
     })
 
     return () => {
-      chartRef.current.destroy()
+      graficoRef.current.destroy()
     }
-  }, []);
+  }, [])
 
 
   const grafico = {
@@ -45,7 +45,7 @@ function Analise() {
     <div>
       <h1>Análise</h1>
       <div style={grafico}>
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={telaRef}></canvas>
       </div>
     </div>
   );
