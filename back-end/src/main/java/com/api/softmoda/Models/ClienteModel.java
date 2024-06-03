@@ -10,10 +10,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "produtos")
+@Table(name = "cliente")
 @Getter
 @Setter
-public class ProdutoModel {
+public class ClienteModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +23,16 @@ public class ProdutoModel {
   @Column(name = "nome", nullable = false)
   private String nome;
 
-  @Column(name = "cor", nullable = false)
-  private String cor;
+  @Column(name = "email", nullable = false, unique = true)
+  private String email;
 
-  @Column(name = "tamanho", nullable = false)
-  private String tamanho;
+  @Column(name = "cpf", nullable = false, unique = true)
+  private String cpf;
 
-  @Column(name = "valor", nullable = false)
-  private Float valor;
+  @Column(name = "data_nascimento", nullable = false)
+  private String data_nascimento;
 
-  @Column(name = "quantidade", nullable = false)
-  private Integer quantidade;
+  @Column(name = "telefone", nullable = false)
+  private String telefone;
   
 }

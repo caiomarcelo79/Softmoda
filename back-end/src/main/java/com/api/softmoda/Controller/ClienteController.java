@@ -5,8 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.softmoda.Models.ProdutoModel;
-import com.api.softmoda.Services.ProdutoService;
+import com.api.softmoda.Models.ClienteModel;
+import com.api.softmoda.Services.ClienteService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,28 +20,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class ProdutoController {
+public class ClienteController {
 
   @Autowired
-  private ProdutoService ps;
+  private ClienteService cs;
   
-  @PostMapping("/produto/cadastrar")
-  public ResponseEntity<?> cadastrar(@RequestBody ProdutoModel pm){
-    return ps.cadastrar(pm);
+  @PostMapping("/cliente/cadastrar")
+  public ResponseEntity<?> cadastrar(@RequestBody ClienteModel cm){
+    return cs.cadastrar(cm);
   }
 
-  @PutMapping("/produto/alterar")
-  public ResponseEntity<?> alterar(@RequestBody ProdutoModel pm){
-    return ps.alterar(pm);
+  @PutMapping("/cliente/alterar")
+  public ResponseEntity<?> alterar(@RequestBody ClienteModel cm){
+    return cs.alterar(cm);
   }
   
-  @PutMapping("/produto/remover")
+  @PutMapping("/cliente/remover")
   public ResponseEntity<?> remover(@PathVariable long id){
-    return ps.remover(id);
+    return cs.remover(id);
   }
   
-  @GetMapping("/produto/listar")
-  public Iterable<ProdutoModel> listar(){
-    return ps.listar();
+  @GetMapping("/cliente/listar")
+  public Iterable<ClienteModel> listar(){
+    return cs.listar();
   }
 }

@@ -17,7 +17,7 @@ function Inventario(){
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/listar")
+    fetch("http://localhost:8080/produto/listar")
     .then(retorno => retorno.json())
     .then(retorno_convertido => setProdutos(retorno_convertido))
   }, [])
