@@ -37,7 +37,7 @@ function Clientes(){
 
         <tbody>
           
-          <tr key="Id_Cliente">
+          <tr key="CPF">
             <th>196374</th>
             <th>José Alencar Silva</th>
             <th>jose.silva@email.com</th>
@@ -48,7 +48,7 @@ function Clientes(){
             <th><button className="btn btn-danger">Excluir</button></th>
           </tr>
 
-          <tr key="Id_Cliente">
+          <tr key="CPF">
             <th>563535</th>
             <th>Adéle Leitão Cavalcante</th>
             <th>adele.cavalcante@email.com</th>

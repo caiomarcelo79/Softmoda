@@ -21,7 +21,7 @@ function Vendas(){
 
         <tbody>
           
-          <tr key="Id_Venda">
+          <tr key="Nome_Cliente">
             <th>978545</th>
             <th>468236</th>
             <th>José Alencar Silva</th>
@@ -33,7 +33,7 @@ function Vendas(){
             <th><button className="btn btn-danger">Excluir</button></th>
           </tr>
 
-          <tr key="Id_Venda">
+          <tr key="Nome_Cliente">
             <th>321546</th>
             <th>563535</th>
             <th>Adéle Leitão Cavalcante</th>

@@ -37,7 +37,7 @@ function Inventario(){
 
         <tbody>
           
-          <tr key="Id_Produto">
+          <tr key="Produto">
             <th>468236</th>
             <th>Calça</th>
             <th>7</th>
@@ -49,7 +49,7 @@ function Inventario(){
             <th><button className="btn btn-danger">Excluir</button></th>
           </tr>
 
-          <tr key="Id_Produto">
+          <tr key="Produto">
             <th>563535</th>
             <th>Camisa</th>
             <th>4</th>

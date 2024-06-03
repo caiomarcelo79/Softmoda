@@ -1,8 +1,9 @@
 function Marketing(){
 
   return(
-    <div className="bg-body-gray2">
+    <div>
       <h1>Marketing</h1>
+      <h2>EM BREVE</h2>
     </div>
   )
 }
