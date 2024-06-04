@@ -24,7 +24,7 @@ public class ClienteService {
 
   
   public ResponseEntity<?> cadastrar(ClienteModel cm){
-    if (cm.getNome().equals("") || cm.getEmail().equals("") || cm.getCpf().equals("") || cm.getData_nascimento().equals("") || cm.getTelefone().equals("")) {
+    if (cm.getNome().equals("") || cm.getEmail().equals("") || cm.getCpf().equals("") || cm.getData_nascimento().equals(null) || cm.getTelefone().equals("")) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
@@ -34,7 +34,7 @@ public class ClienteService {
   }
 
   public ResponseEntity<?> alterar(ClienteModel cm){
-    if (cm.getNome().equals("") || cm.getEmail().equals("") || cm.getCpf().equals("") || cm.getData_nascimento().equals("") || cm.getTelefone().equals("")) {
+    if (cm.getNome().equals("") || cm.getEmail().equals("") || cm.getCpf().equals("") || cm.getData_nascimento().equals(null) || cm.getTelefone().equals("")) {
       em.setMensagem("Erro ao alterar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
