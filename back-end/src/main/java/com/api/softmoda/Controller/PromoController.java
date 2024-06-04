@@ -3,6 +3,7 @@ package com.api.softmoda.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.softmoda.Models.PromoModel;
@@ -35,7 +36,7 @@ public class PromoController {
     return ps.alterar(pm);
   }
   
-  @PutMapping("/promo/remover")
+  @DeleteMapping("/promo/remover/{id}")
   public ResponseEntity<?> remover(@PathVariable long id){
     return ps.remover(id);
   }

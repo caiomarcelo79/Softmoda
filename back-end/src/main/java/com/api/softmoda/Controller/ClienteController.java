@@ -3,6 +3,7 @@ package com.api.softmoda.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.softmoda.Models.ClienteModel;
@@ -35,7 +36,7 @@ public class ClienteController {
     return cs.alterar(cm);
   }
   
-  @PutMapping("/cliente/remover")
+  @DeleteMapping("/cliente/remover/{id}")
   public ResponseEntity<?> remover(@PathVariable long id){
     return cs.remover(id);
   }
