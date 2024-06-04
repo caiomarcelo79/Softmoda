@@ -33,7 +33,7 @@ public class ClienteModel {
   @Column(name = "cpf", nullable = false, unique = true)
   private String cpf;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
   @Column(name = "data_nascimento", nullable = false)
   private Date data_nascimento;
 
