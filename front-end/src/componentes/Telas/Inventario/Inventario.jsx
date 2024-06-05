@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react"
+import Cadastro from "./Cadastro"
 
 function Inventario(){
 
-  const produto = {
-    id: 0,
-    nome: "",
-    cor: "",
-    tamanho: "",
-    valor: 0.00,
-    quatidade: 0
-  }
-
-
-  const [objProduto, setObjProduto] = useState(produto)
   const [produtos, setProdutos] = useState([])
 
 
@@ -21,45 +11,45 @@ function Inventario(){
     .then(retorno => retorno.json())
     .then(retorno_convertido => setProdutos(retorno_convertido))
   }, [])
-
-  function Cadastrar(){
-
-  }
   
 
   const [search, setSearch] = useState("")
 
-  const pesquisa = function(event){
+  function pesquisa(event){
     setSearch(event.target.value)
   }
 
+  const Remover = ()=>{
+    fetch('http://localhost:8080/produto/remover/'+obj.id, {
+      method:'delete',
+      headers:{
+        'Content-type':'application/json',
+        'Accept':'application/json'
+      }
+    })
+    console.log(obj.id)
+  }
+
+
+  function Retorno(){
+    console.log(obj.id)
+  }
 
   const produtosSCH = produtos.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
-  console.log(search)
+  
+
+  console.log(produtosSCH)
+
+
 
   return(
     <div>
-      <h1>Inventário/Estoque</h1>
-      <br/><br/>
-      <form>
-        <h2>Cadastre um produto</h2>
-        <br/>
-        <input type="text" placeholder="Produto" className="form-control"/>
-        <br/>
-        <input type="text" placeholder="Quantidade" className="form-control"/>
-        <br/>
-        <input type="text" placeholder="Cor" className="form-control"/>
-        <br/>
-        <input type="text" placeholder="Valor" className="form-control"/>
-        <br/>
-        <input type="text" placeholder="Tamanho" className="form-control"/>
-        <br/>
-        <input type="button" value='Cadastrar' className="btn btn-primary"/>
-      </form>
-      <br/>
+    <Cadastro/>
+    <br/><br/>
       
-      <input
+      <h3>Barra de pesquisa</h3>
+      <input className="form-control"
       type="search"
       value={search}
       onChange={pesquisa}
@@ -89,8 +79,19 @@ function Inventario(){
                 <th>{obj.cor}</th>
                 <th>{obj.valor}</th>
                 <th>{obj.tamanho}</th>
-                <th><button className="btn btn-warning">Alterar</button></th>
-                <th><button className="btn btn-danger">Excluir</button></th>
+                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
+                <th><button onClick={()=>{
+                  fetch('http://localhost:8080/produto/remover/'+obj.id, {
+                  method:'delete',
+                  headers:{
+                    'Content-type':'application/json',
+                    'Accept':'application/json'
+                  }})
+
+                  alert('O produto foi removido com sucesso')
+                  location.reload()
+                }} 
+                  className="btn btn-danger">Excluir</button></th>
               </tr>
             ))
           }

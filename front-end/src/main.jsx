@@ -4,7 +4,8 @@ import App from './App.jsx'
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Inventario from './componentes/Telas/Inventario.jsx'
+import Inventario from './componentes/Telas/Inventario/Inventario.jsx'
+import Cadastro from './componentes/Telas/Inventario/Cadastro.jsx'
 import Vendas from './componentes/Telas/Vendas.jsx'
 import Analise from './componentes/Telas/Analise.jsx'
 import Promocoes from './componentes/Telas/Promocoes.jsx'
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "inventario",
-        element: <Inventario/>
+        element: <Inventario/>,
+      },
+      {
+        path: "inventario/cadastro",
+        element: <Cadastro/>
       },
       {
         path: "vendas",
