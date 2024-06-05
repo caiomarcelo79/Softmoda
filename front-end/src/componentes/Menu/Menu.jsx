@@ -12,7 +12,6 @@ function Menu(){
         <li><a href="/analise">Análise de vendas</a></li>
         <li><a href="/promocoes">Promoções e descontos</a></li>
         <li><a href="/fornecedores">Fornecedores</a></li>
-        <li><a href="/marketing">Ferramentas de marketing</a></li>
         <li><a href="/pessoal">Gestão pessoal</a></li>
         <li><a href="/relatorios">Relatorios financeiros</a></li>
       </ul>
