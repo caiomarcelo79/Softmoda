@@ -36,11 +36,10 @@ public class PromoModel {
   @Column(name = "desconto", nullable = false)
   private Integer desconto;
 
-  @Lob
-  @Column(name = "condicoes", nullable = false, length = 512)
+  @Column(name = "condicoes", nullable = false)
   private String condicoes;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
   @Column(name = "validade", nullable = false)
   private Date validade;
   

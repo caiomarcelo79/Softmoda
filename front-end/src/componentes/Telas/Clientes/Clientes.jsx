@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 
-function Inventario(){
+function Clientes(){
 
-  const [produtos, setProdutos] = useState([])
+  const [clientes, setClientes] = useState([])
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/produto/listar")
+    fetch("http://localhost:8080/cliente/listar")
     .then(retorno => retorno.json())
-    .then(retorno_convertido => setProdutos(retorno_convertido))
+    .then(retorno_convertido => setClientes(retorno_convertido))
   }, [])
   
 
@@ -19,18 +19,18 @@ function Inventario(){
     setSearch(event.target.value)
   }
 
-  const produtosSCH = produtos.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
+  const clientesSCH = clientes.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
   
 
-  console.log(produtosSCH)
+  console.log(clientesSCH)
 
   return(
     <div>
-      <h1>Inventário/Estoque</h1>
+      <h1>Clientes cadastrados</h1>
       <Cadastro/>
       <br/><br/>
-      
+
       <h3>Barra de pesquisa</h3>
       <input className="form-control"
       type="search"
@@ -41,12 +41,12 @@ function Inventario(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Produto</th>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th>Cor</th>
-            <th>Valor</th>
-            <th>Tamanho</th>
+            <th>Id_Cliente</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>Telefone</th>
             <th></th>
             <th></th>
           </tr>
@@ -54,24 +54,24 @@ function Inventario(){
 
         <tbody>
           {
-            produtosSCH.map((obj)=>(
+            clientesSCH.map((obj)=>(
               <tr key={obj.nome}>
                 <th>{obj.id}</th>
                 <th>{obj.nome}</th>
-                <th>{obj.quantidade}</th>
-                <th>{obj.cor}</th>
-                <th>{obj.valor}</th>
-                <th>{obj.tamanho}</th>
+                <th>{obj.email}</th>
+                <th>{obj.cpf}</th>
+                <th>{obj.data_nascimento}</th>
+                <th>{obj.telefone}</th>
                 <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/produto/remover/'+obj.id, {
+                  fetch('http://localhost:8080/cliente/remover/'+obj.id, {
                   method:'delete',
                   headers:{
                     'Content-type':'application/json',
                     'Accept':'application/json'
                   }})
 
-                  alert('O produto foi removido com sucesso')
+                  alert('O cliente foi removido com sucesso')
                   location.reload()
                 }} 
                   className="btn btn-danger">Excluir</button></th>
@@ -85,4 +85,4 @@ function Inventario(){
   )
 }
 
-export default Inventario
+export default Clientes

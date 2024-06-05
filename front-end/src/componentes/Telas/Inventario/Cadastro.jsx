@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { redirect } from "react-router-dom"
+import { useState } from "react"
 
 function Cadastro(){
 
@@ -34,7 +33,6 @@ function Cadastro(){
 
   return(
     <div>
-      <h1>Inventário/Estoque</h1>
       <br/>
       <form>
         <h2>Cadastre um produto</h2>

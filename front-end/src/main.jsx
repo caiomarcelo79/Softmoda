@@ -5,15 +5,14 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Inventario from './componentes/Telas/Inventario/Inventario.jsx'
-import Cadastro from './componentes/Telas/Inventario/Cadastro.jsx'
 import Vendas from './componentes/Telas/Vendas.jsx'
 import Analise from './componentes/Telas/Analise.jsx'
-import Promocoes from './componentes/Telas/Promocoes.jsx'
+import Promocoes from './componentes/Telas/Promocoes/Promocoes.jsx'
 import Fornecedores from './componentes/Telas/Fornecedores.jsx'
 import Marketing from './componentes/Telas/Marketing.jsx'
 import Pessoal from './componentes/Telas/Pessoal.jsx'
 import Relatorios from './componentes/Telas/Relatorios.jsx'
-import Clientes from './componentes/Telas/Clientes.jsx'
+import Clientes from './componentes/Telas/Clientes/Clientes.jsx'
 
 
 const router = createBrowserRouter([
@@ -24,10 +23,6 @@ const router = createBrowserRouter([
       {
         path: "inventario",
         element: <Inventario/>,
-      },
-      {
-        path: "inventario/cadastro",
-        element: <Cadastro/>
       },
       {
         path: "vendas",

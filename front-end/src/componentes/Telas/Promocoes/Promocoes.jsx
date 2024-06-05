@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 
-function Inventario(){
+function Promocoes(){
 
-  const [produtos, setProdutos] = useState([])
+  const [promo, setPromo] = useState([])
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/produto/listar")
+    fetch("http://localhost:8080/promo/listar")
     .then(retorno => retorno.json())
-    .then(retorno_convertido => setProdutos(retorno_convertido))
+    .then(retorno_convertido => setPromo(retorno_convertido))
   }, [])
   
 
@@ -19,15 +19,15 @@ function Inventario(){
     setSearch(event.target.value)
   }
 
-  const produtosSCH = produtos.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
+  const promoSCH = promo.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
   
 
-  console.log(produtosSCH)
+  console.log(promoSCH)
 
   return(
     <div>
-      <h1>Inventário/Estoque</h1>
+      <h1>Promoções</h1>
       <Cadastro/>
       <br/><br/>
       
@@ -41,12 +41,11 @@ function Inventario(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Produto</th>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th>Cor</th>
-            <th>Valor</th>
-            <th>Tamanho</th>
+            <th>Id_Promocao</th>
+            <th>Promoção</th>
+            <th>Desconto</th>
+            <th>Validade</th>
+            <th>Condições de uso</th>
             <th></th>
             <th></th>
           </tr>
@@ -54,17 +53,16 @@ function Inventario(){
 
         <tbody>
           {
-            produtosSCH.map((obj)=>(
+            promoSCH.map((obj)=>(
               <tr key={obj.nome}>
                 <th>{obj.id}</th>
                 <th>{obj.nome}</th>
-                <th>{obj.quantidade}</th>
-                <th>{obj.cor}</th>
-                <th>{obj.valor}</th>
-                <th>{obj.tamanho}</th>
+                <th>{obj.desconto}</th>
+                <th>{obj.validade}</th>
+                <th>{obj.condicoes}</th>
                 <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/produto/remover/'+obj.id, {
+                  fetch('http://localhost:8080/promo/remover/'+obj.id, {
                   method:'delete',
                   headers:{
                     'Content-type':'application/json',
@@ -85,4 +83,4 @@ function Inventario(){
   )
 }
 
-export default Inventario
+export default Promocoes
