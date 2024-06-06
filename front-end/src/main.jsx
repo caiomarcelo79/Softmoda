@@ -9,7 +9,7 @@ import Vendas from './componentes/Telas/Vendas.jsx'
 import Analise from './componentes/Telas/Analise.jsx'
 import Promocoes from './componentes/Telas/Promocoes/Promocoes.jsx'
 import Fornecedores from './componentes/Telas/Fornecedores/Fornecedores.jsx'
-import Pessoal from './componentes/Telas/Pessoal.jsx'
+import Pessoal from './componentes/Telas/Pessoal/Pessoal.jsx'
 import Relatorios from './componentes/Telas/Relatorios.jsx'
 import Clientes from './componentes/Telas/Clientes/Clientes.jsx'
 
