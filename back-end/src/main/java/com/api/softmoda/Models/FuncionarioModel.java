@@ -1,10 +1,8 @@
 package com.api.softmoda.Models;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,32 +15,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "funcionario")
 @Getter
 @Setter
-public class ClienteModel {
+public class FuncionarioModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
   private UUID id;
 
-  @OneToMany(mappedBy = "clienteModel")
+  @OneToMany(mappedBy = "funcionarioModel")
   private List<VendaModel> vendasModels;
-
 
   @Column(name = "nome", nullable = false)
   private String nome;
 
-  @Column(name = "email", nullable = false, unique = true)
-  private String email;
-
   @Column(name = "cpf", nullable = false, unique = true)
   private String cpf;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
-  @Column(name = "data_nascimento", nullable = false)
-  private Date data_nascimento;
+  @Column(name = "cargo", nullable = false, unique = true)
+  private String cargo;
+
+  @Column(name = "salario", nullable = false)
+  private Float salario;
 
   @Column(name = "telefone", nullable = false)
   private String telefone;

@@ -1,5 +1,7 @@
 package com.api.softmoda.Services;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,7 +45,7 @@ public class ClienteService {
     }
   }
 
-  public ResponseEntity<?> remover(long id){
+  public ResponseEntity<?> remover(UUID id){
     cr.deleteById(id);
 
     em.setMensagem("Nenhum erro ocorreu");

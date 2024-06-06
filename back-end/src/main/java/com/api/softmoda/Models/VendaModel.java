@@ -1,6 +1,7 @@
 package com.api.softmoda.Models;
 
 import java.sql.Date;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,9 +23,9 @@ import lombok.Setter;
 public class VendaModel {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
-  private Long id;
+  private UUID id;
 
   @ManyToOne
   @JoinColumn(name = "id_produto", nullable = true)
@@ -35,6 +36,9 @@ public class VendaModel {
   @JoinColumn(name = "id_cliente", nullable = true)
   private ClienteModel clienteModel;
 
+  @ManyToOne
+  @JoinColumn(name = "id_funcionario", nullable = true)
+  private FuncionarioModel funcionarioModel;
   
   @ManyToOne
   @JoinColumn(name = "id_cupom", nullable = true)

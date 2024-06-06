@@ -1,6 +1,7 @@
 package com.api.softmoda.Models;
 
 import java.util.List;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,9 +20,9 @@ import lombok.Setter;
 public class ProdutoModel {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
-  private Long id;
+  private UUID id;
 
   @OneToMany(mappedBy = "produtoModel")
   private List<VendaModel> vendasModels;

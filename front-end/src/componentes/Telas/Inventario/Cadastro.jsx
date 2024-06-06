@@ -3,7 +3,7 @@ import { useState } from "react"
 function Cadastro(){
 
   const produto = {
-    id: 0,
+    id: "",
     nome: "",
     cor: "",
     tamanho: "",

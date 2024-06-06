@@ -8,45 +8,45 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.api.softmoda.Models.ErroModel;
-import com.api.softmoda.Models.ProdutoModel;
-import com.api.softmoda.Repository.ProdutoRepository;
+import com.api.softmoda.Models.FuncionarioModel;
+import com.api.softmoda.Repository.FuncionarioRepository;
 
 @Service
-public class ProdutoService {
+public class FuncionarioService {
   
   @Autowired
-  private ProdutoRepository pr;
+  private FuncionarioRepository fr;
 
   @Autowired
   private ErroModel em;
 
-  public Iterable<ProdutoModel> listar(){
-    return pr.findAll();
+  public Iterable<FuncionarioModel> listar(){
+    return fr.findAll();
   }
 
   
-  public ResponseEntity<?> cadastrar(ProdutoModel pm){
-    if (pm.getNome().equals("") || pm.getCor().equals("") || pm.getTamanho().equals("") || pm.getValor().equals(null) || pm.getQuantidade().equals(null)) {
+  public ResponseEntity<?> cadastrar(FuncionarioModel fm){
+    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals("") || fm.getTelefone().equals("")) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
       em.setMensagem("Nenhum erro ocorreu");
-      return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.CREATED);
+      return new ResponseEntity<FuncionarioModel>(fr.save(fm), HttpStatus.CREATED);
     }
   }
 
-  public ResponseEntity<?> alterar(ProdutoModel pm){
-    if (pm.getNome().equals("") || pm.getCor().equals("") || pm.getTamanho().equals("") || pm.getValor().equals(null) || pm.getQuantidade().equals(null)) {
+  public ResponseEntity<?> alterar(FuncionarioModel fm){
+    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals("") || fm.getTelefone().equals("")) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
       em.setMensagem("Nenhum erro ocorreu");
-      return new ResponseEntity<ProdutoModel>(pr.save(pm), HttpStatus.OK);
+      return new ResponseEntity<FuncionarioModel>(fr.save(fm), HttpStatus.OK);
     }
   }
 
   public ResponseEntity<?> remover(UUID id){
-    pr.deleteById(id);
+    fr.deleteById(id);
 
     em.setMensagem("Nenhum erro ocorreu");
     return new ResponseEntity<ErroModel>(em, HttpStatus.OK);

@@ -1,5 +1,7 @@
 package com.api.softmoda.Models;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,9 +18,9 @@ import lombok.Setter;
 public class FornecedorModel {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "id", nullable = false, unique = true)
-  private Long id;
+  private UUID id;
 
   @Column(name = "cnpj", nullable = false, unique = true)
   private String cnpj;

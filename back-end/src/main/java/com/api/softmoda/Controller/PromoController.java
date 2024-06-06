@@ -1,5 +1,7 @@
 package com.api.softmoda.Controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,7 +39,7 @@ public class PromoController {
   }
   
   @DeleteMapping("/promo/remover/{id}")
-  public ResponseEntity<?> remover(@PathVariable long id){
+  public ResponseEntity<?> remover(@PathVariable UUID id){
     return ps.remover(id);
   }
   

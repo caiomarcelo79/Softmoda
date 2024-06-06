@@ -3,7 +3,7 @@ import { useState } from "react"
 function Cadastro(){
 
   const promo = {
-    id: 0,
+    id: "",
     nome: "",
     desconto: "",
     condicoes: "",

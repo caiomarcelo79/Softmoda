@@ -7,10 +7,10 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.api.softmoda.Models.PromoModel;
+import com.api.softmoda.Models.FuncionarioModel;
 
 
 @Repository
-public interface PromoRepository extends JpaRepository<PromoModel, UUID> {
+public interface FuncionarioRepository extends JpaRepository<FuncionarioModel, UUID> {
   
 }

@@ -3,7 +3,7 @@ import { useState } from "react"
 function Cadastro(){
 
   const cliente = {
-    id: 0,
+    id: "",
     nome: "",
     email: "",
     cpf: "",

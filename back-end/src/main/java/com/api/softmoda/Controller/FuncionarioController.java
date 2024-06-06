@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.softmoda.Models.ClienteModel;
-import com.api.softmoda.Services.ClienteService;
+import com.api.softmoda.Models.FuncionarioModel;
+import com.api.softmoda.Services.FuncionarioService;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -23,28 +23,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class ClienteController {
+public class FuncionarioController {
 
   @Autowired
-  private ClienteService cs;
+  private FuncionarioService fs;
   
-  @PostMapping("/cliente/cadastrar")
-  public ResponseEntity<?> cadastrar(@RequestBody ClienteModel cm){
-    return cs.cadastrar(cm);
+  @PostMapping("/funcionario/cadastrar")
+  public ResponseEntity<?> cadastrar(@RequestBody FuncionarioModel fm){
+    return fs.cadastrar(fm);
   }
 
-  @PutMapping("/cliente/alterar")
-  public ResponseEntity<?> alterar(@RequestBody ClienteModel cm){
-    return cs.alterar(cm);
+  @PutMapping("/funcionario/alterar")
+  public ResponseEntity<?> alterar(@RequestBody FuncionarioModel fm){
+    return fs.alterar(fm);
   }
   
-  @DeleteMapping("/cliente/remover/{id}")
+  @DeleteMapping("/funcionario/remover/{id}")
   public ResponseEntity<?> remover(@PathVariable UUID id){
-    return cs.remover(id);
+    return fs.remover(id);
   }
   
-  @GetMapping("/cliente/listar")
-  public Iterable<ClienteModel> listar(){
-    return cs.listar();
+  @GetMapping("/funcionario/listar")
+  public Iterable<FuncionarioModel> listar(){
+    return fs.listar();
   }
 }
