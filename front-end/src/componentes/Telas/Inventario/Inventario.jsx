@@ -48,7 +48,6 @@ function Inventario(){
             <th>Valor</th>
             <th>Tamanho</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -62,7 +61,6 @@ function Inventario(){
                 <th>{obj.cor}</th>
                 <th>{obj.valor}</th>
                 <th>{obj.tamanho}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/produto/remover/'+obj.id, {
                   method:'delete',

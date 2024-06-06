@@ -48,7 +48,6 @@ function Clientes(){
             <th>Data de Nascimento</th>
             <th>Telefone</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -62,7 +61,6 @@ function Clientes(){
                 <th>{obj.cpf}</th>
                 <th>{obj.data_nascimento}</th>
                 <th>{obj.telefone}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/cliente/remover/'+obj.id, {
                   method:'delete',

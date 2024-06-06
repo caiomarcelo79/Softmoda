@@ -7,7 +7,7 @@ function Cadastro(){
     nome: "",
     cpf: "",
     cargo: "",
-    salario: 0.00,
+    salario: 0,
     telefone: ""
   }
   

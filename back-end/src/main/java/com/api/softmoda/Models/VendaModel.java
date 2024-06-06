@@ -41,7 +41,7 @@ public class VendaModel {
   private String forma_pagamento;
 
   @Column(name = "valor_compra", nullable = false)
-  private String valor_compra;
+  private Float valor_compra;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
   @Column(name = "data_compra", nullable = false)

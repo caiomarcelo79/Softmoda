@@ -48,7 +48,6 @@ function Pessoal(){
             <th>Salario</th>
             <th>Telefone</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -62,7 +61,6 @@ function Pessoal(){
                 <th>{obj.cargo}</th>
                 <th>{obj.salario}</th>
                 <th>{obj.telefone}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/funcionario/remover/'+obj.id, {
                   method:'delete',

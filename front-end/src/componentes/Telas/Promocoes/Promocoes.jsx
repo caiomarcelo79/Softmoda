@@ -47,7 +47,6 @@ function Promocoes(){
             <th>Validade</th>
             <th>Condições de uso</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -60,7 +59,6 @@ function Promocoes(){
                 <th>{obj.desconto}</th>
                 <th>{obj.validade}</th>
                 <th>{obj.condicoes}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/promo/remover/'+obj.id, {
                   method:'delete',

@@ -1,16 +1,85 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react'
+import Chart from 'react-apexcharts'
 
 function Relatorios() {
-  const [inicioData, setInicioData] = useState('');
-  const [fimData, setFimData] = useState('');
+  const [inicioData, setInicioData] = useState('')
+  const [fimData, setFimData] = useState('')
+  const [venda, setVenda] = useState([])
+  const [filtradoVenda, setFiltradoVenda] = useState([])
+  const [funcionarios, setFuncionarios] = useState([])
+  const [receitaTotal, setReceitaTotal] = useState(0.00)
+  const [despesaTotal, setDespesaTotal] = useState(0.00)
 
+  useEffect(() => {
+    fetch("http://localhost:8080/venda/listar")
+      .then((retorno) => retorno.json())
+      .then((retorno_convertido) => setVenda(retorno_convertido))
+  }, [])
 
-  const dataFiltro = () => {
-    
-  };
+  useEffect(() => {
+    fetch("http://localhost:8080/funcionario/listar")
+      .then(retorno => retorno.json())
+      .then(retorno_convertido => setFuncionarios(retorno_convertido))
+  }, [])
 
+  useEffect(() => {
+    filtrarVendas()
+  }, [inicioData, fimData, venda])
 
-  
+  useEffect(() => {
+    calcularDespesas()
+  }, [funcionarios])
+
+  const filtrarVendas = () => {
+    if (!inicioData || !fimData) {
+      setFiltradoVenda(venda)
+      calcularReceita(venda)
+      return
+    }
+    const inicio = new Date(inicioData)
+    const fim = new Date(fimData)
+    const vendasFiltradas = venda.filter((venda) => {
+      const dataVenda = new Date(venda.data)
+      return dataVenda >= inicio && dataVenda <= fim
+    })
+    setFiltradoVenda(vendasFiltradas)
+    calcularReceita(vendasFiltradas)
+  }
+
+  const calcularReceita = (vendas) => {
+    let total = 0
+    vendas.forEach((obj) => {
+      total += parseFloat(obj.valor_compra)
+    })
+    setReceitaTotal(total)
+  }
+
+  const calcularDespesas = () => {
+    let total = 0
+    funcionarios.forEach((obj) => {
+      total += parseFloat(obj.salario)
+    })
+    setDespesaTotal(total)
+  }
+
+  const lucroLiquido = receitaTotal - despesaTotal
+
+  filtradoVenda.map(venda => console.log(venda.data))
+
+  const chartData = {
+    series: [{
+      name: 'Vendas',
+      data: filtradoVenda.map(venda => parseFloat(venda.valor_compra))
+    }],
+    options: {
+      chart: {
+        type: 'bar'
+      },
+      xaxis: {
+        categories: filtradoVenda.map(venda => new Date(venda.data))
+      }
+    }
+  }
 
   return (
     <div>
@@ -37,49 +106,25 @@ function Relatorios() {
           />
         </label>
         <br/><br/>
-        <button onClick={dataFiltro} className="btn btn-primary">Filtrar</button>
+        <button onClick={filtrarVendas} className="btn btn-primary">Filtrar</button>
       </div>
       <br/>
 
-      <div className="summary">
+      <div>
         <h2>Resumo Financeiro</h2>
-        <p>Receita Total: R$ 100,000</p>
-        <p>Despesas Totais: R$ 50,000</p>
-        <p>Lucro Líquido: R$ 50,000</p>
+        <p>Receita Total: R$ {receitaTotal.toFixed(2)}</p>
+        <p>Despesas Totais: R$ {despesaTotal.toFixed(2)}</p>
+        <p>Lucro Líquido: R$ {lucroLiquido.toFixed(2)}</p>
       </div>
       <br/>
 
       <div>
         <h2>Lucros</h2>
-        <h3>Grafico aqui</h3>
+        <Chart options={chartData.options} series={chartData.series} type="bar" height={350} />
       </div>
       <br/>
-
-      <div className="report-table">
-        <h2>Relatórios</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Id_Relatório</th>
-              <th>Mês</th>
-              <th>Tipo</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>798254</td>
-              <td>06/2024</td>
-              <td>Vendas</td>
-              <td>
-                <button className="btn btn-secondary">Detalhes</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-  );
+  )
 }
 
-export default Relatorios;
+export default Relatorios

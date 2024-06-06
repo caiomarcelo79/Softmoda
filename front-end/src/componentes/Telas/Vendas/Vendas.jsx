@@ -50,7 +50,6 @@ function Vendas(){
             <th>Valor de Compra</th>
             <th>Data da compra</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -66,7 +65,6 @@ function Vendas(){
                 <th>{obj.forma_pagamento}</th>
                 <th>{obj.valor_compra}</th>
                 <th>{obj.data_compra}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/venda/remover/'+obj.id, {
                   method:'delete',

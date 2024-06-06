@@ -11,7 +11,7 @@ function Chart() {
   }, []);
 
   // Função para agrupar vendas por mês
-  const agrupamentoVendasPorMes = ()=>{
+  const grupoVendasPorMes = ()=>{
     const vendasPorMes = {};
     venda.forEach((obj) => {
       const data = new Date(obj.data_compra);
@@ -24,7 +24,7 @@ function Chart() {
     return vendasPorMes;
   };
 
-  const vendasPorMes = agrupamentoVendasPorMes();
+  const vendasPorMes = grupoVendasPorMes();
 
   const series = [
     {

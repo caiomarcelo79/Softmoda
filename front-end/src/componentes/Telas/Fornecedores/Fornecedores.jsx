@@ -47,7 +47,6 @@ function Fornecedores(){
             <th>Fantasia</th>
             <th>Endereço</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -60,7 +59,6 @@ function Fornecedores(){
                 <th>{obj.razao_social}</th>
                 <th>{obj.fantasia}</th>
                 <th>{obj.endereco}</th>
-                <th><button onClick={()=>{alert('Desenvolvido no Futuro')}} className="btn btn-warning">Alterar</button></th>
                 <th><button onClick={()=>{
                   fetch('http://localhost:8080/fornecedor/remover/'+obj.id, {
                   method:'delete',
