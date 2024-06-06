@@ -23,7 +23,6 @@ function Fornecedores(){
 
   
 
-  console.log(fornecedorSCH)
 
   return(
     <div>

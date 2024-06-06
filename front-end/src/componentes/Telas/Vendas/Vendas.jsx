@@ -23,7 +23,6 @@ function Vendas(){
 
   
 
-  console.log(vendaSCH)
 
   return(
     <div>

@@ -32,7 +32,6 @@ function Cadastro(){
 
   return(
     <div>
-      <p>{JSON.stringify(objPromo)}</p>
       <br/>
       <form>
         <h2>Cadastre a Promoção</h2>

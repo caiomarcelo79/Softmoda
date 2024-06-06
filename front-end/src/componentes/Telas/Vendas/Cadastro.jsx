@@ -35,7 +35,6 @@ function Cadastro(){
 
   return(
     <div>
-      <p>{JSON.stringify(objVenda)}</p>
       <br/>
       <form>
         <h2>Cadastre a Venda</h2>

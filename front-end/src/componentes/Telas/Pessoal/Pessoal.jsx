@@ -23,7 +23,6 @@ function Pessoal(){
 
   
 
-  console.log(funcionariosSCH)
 
   return(
     <div>

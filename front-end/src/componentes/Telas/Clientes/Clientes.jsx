@@ -23,7 +23,6 @@ function Clientes(){
 
   
 
-  console.log(clientesSCH)
 
   return(
     <div>

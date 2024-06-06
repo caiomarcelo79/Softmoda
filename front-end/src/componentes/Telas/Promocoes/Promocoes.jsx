@@ -23,7 +23,6 @@ function Promocoes(){
 
   
 
-  console.log(promoSCH)
 
   return(
     <div>

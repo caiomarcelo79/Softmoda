@@ -23,7 +23,6 @@ function Inventario(){
 
   
 
-  console.log(produtosSCH)
 
   return(
     <div>
