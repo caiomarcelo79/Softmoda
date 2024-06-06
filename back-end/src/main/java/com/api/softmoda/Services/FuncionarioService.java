@@ -26,7 +26,7 @@ public class FuncionarioService {
 
   
   public ResponseEntity<?> cadastrar(FuncionarioModel fm){
-    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals("") || fm.getTelefone().equals("")) {
+    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals(null) || fm.getTelefone().equals("")) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
@@ -36,7 +36,7 @@ public class FuncionarioService {
   }
 
   public ResponseEntity<?> alterar(FuncionarioModel fm){
-    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals("") || fm.getTelefone().equals("")) {
+    if (fm.getNome().equals("") || fm.getCpf().equals("") || fm.getCargo().equals("") || fm.getSalario().equals(null) || fm.getTelefone().equals("")) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{

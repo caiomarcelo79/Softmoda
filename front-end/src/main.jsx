@@ -5,7 +5,7 @@ import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Inventario from './componentes/Telas/Inventario/Inventario.jsx'
-import Vendas from './componentes/Telas/Vendas.jsx'
+import Vendas from './componentes/Telas/Vendas/Vendas.jsx'
 import Analise from './componentes/Telas/Analise.jsx'
 import Promocoes from './componentes/Telas/Promocoes/Promocoes.jsx'
 import Fornecedores from './componentes/Telas/Fornecedores/Fornecedores.jsx'
