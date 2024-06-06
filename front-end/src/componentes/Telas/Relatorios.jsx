@@ -9,45 +9,7 @@ function Relatorios() {
     
   };
 
-  const telaRef = useRef(null)
-  const graficoRef = useRef(null)
 
-  useEffect(() => {
-    const ctx = telaRef.current
-
-    console.log(ctx)
-
-
-    graficoRef.current = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Janeiro', 'Feveiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-        datasets: [{
-          label: 'Lucros 2024',
-          data: [12, 19, 18, 16, 15, 19, 25, 14, 20, 23,20, 30],
-          borderWidth: 7,
-          borderColor: '#9b0000',
-          backgroundColor: '#9b0000bb',
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    })
-
-    return () => {
-      graficoRef.current.destroy()
-    }
-  }, [])
-
-
-  const grafico = {
-    width: "70vw",
-  }
   
 
   return (
@@ -61,7 +23,7 @@ function Relatorios() {
           <input 
             type="month" 
             value={inicioData} 
-            onChange={(event) => setInicioData(event.target.value)} 
+            onChange={(e) => setInicioData(e.target.value)} 
             className="form-control" 
           />
         </label>
@@ -87,9 +49,9 @@ function Relatorios() {
       </div>
       <br/>
 
-      <div style={grafico}>
+      <div>
         <h2>Lucros</h2>
-        <canvas ref={telaRef}></canvas>
+        <h3>Grafico aqui</h3>
       </div>
       <br/>
 
