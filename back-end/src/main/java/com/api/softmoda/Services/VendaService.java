@@ -26,7 +26,7 @@ public class VendaService {
 
   
   public ResponseEntity<?> cadastrar(VendaModel vm){
-    if (vm.getProdutoModel().equals(null) || vm.getClienteModel().equals(null) || vm.getPromoModel().equals(null) || vm.getForma_pagamento().equals(null) || vm.getValor_compra().equals(null) || vm.getData_compra().equals(null)) {
+    if (vm.getNome_produto().equals("") || vm.getCpf_cliente().equals("") || vm.getCpf_funcionario().equals("") || vm.getNome_cupom().equals("") || vm.getForma_pagamento().equals(null) || vm.getValor_compra().equals(null) || vm.getData_compra().equals(null)) {
       em.setMensagem("Erro ao cadastrar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{
@@ -36,7 +36,7 @@ public class VendaService {
   }
 
   public ResponseEntity<?> alterar(VendaModel vm){
-    if (vm.getProdutoModel().equals(null) || vm.getClienteModel().equals(null) || vm.getPromoModel().equals(null) || vm.getForma_pagamento().equals(null) || vm.getValor_compra().equals(null) || vm.getData_compra().equals(null)) {
+    if (vm.getNome_produto().equals("") || vm.getCpf_cliente().equals("") || vm.getCpf_funcionario().equals("") || vm.getNome_cupom().equals("") || vm.getForma_pagamento().equals(null) || vm.getValor_compra().equals(null) || vm.getData_compra().equals(null)) {
       em.setMensagem("Erro ao alterar");
       return new ResponseEntity<ErroModel>(em, HttpStatus.BAD_REQUEST);
     }else{

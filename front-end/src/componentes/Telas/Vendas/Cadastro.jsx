@@ -4,12 +4,12 @@ function Cadastro(){
 
   const venda = {
     id: "",
-    id_produto: "",
-    id_cliente: "",
-    id_funcionario: "",
-    id_cupom: "",
+    nome_produto: "",
+    cpf_cliente: "",
+    cpf_funcionario: "",
+    nome_cupom: "",
     forma_pagamento: "",
-    valor_compra: "",
+    valor_compra: 0,
     data_compra: ""
   }
 
@@ -40,13 +40,13 @@ function Cadastro(){
       <form>
         <h2>Cadastre a Venda</h2>
         <br/>
-        <input onChange={Digito} name="id_produto" type="text" placeholder="Id_Produto" className="form-control"/>
+        <input onChange={Digito} name="nome_produto" type="text" placeholder="Nome do produto" className="form-control"/>
         <br/>
-        <input onChange={Digito} name="id_cliente" type="text" placeholder="Id_Cliente" className="form-control"/>
+        <input onChange={Digito} name="cpf_cliente" type="text" placeholder="CPF do cliente" className="form-control"/>
         <br/>
-        <input onChange={Digito} name="id_funcionario" type="text" placeholder="Id_Funcionario" className="form-control"/>
+        <input onChange={Digito} name="cpf_funcionario" type="text" placeholder="CPF do funcionario" className="form-control"/>
         <br/>
-        <input onChange={Digito} name="id_cupom" type="text" placeholder="Id_Cupom" className="form-control"/>
+        <input onChange={Digito} name="nome_cupom" type="text" placeholder="Nome do cupom" className="form-control"/>
         <br/>
         <input onChange={Digito} name="forma_pagamento" type="text" placeholder="Forma de pagamento" className="form-control"/>
         <br/>

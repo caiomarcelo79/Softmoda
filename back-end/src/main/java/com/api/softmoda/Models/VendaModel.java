@@ -10,8 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,22 +25,17 @@ public class VendaModel {
   @Column(name = "id", nullable = false, unique = true)
   private UUID id;
 
-  @ManyToOne
-  @JoinColumn(name = "id_produto", nullable = true)
-  private ProdutoModel produtoModel;
+  @Column(name = "nome_produto", nullable = false)
+  private String nome_produto;
 
+  @Column(name = "cpf_cliente", nullable = false)
+  private String cpf_cliente;
 
-  @ManyToOne
-  @JoinColumn(name = "id_cliente", nullable = true)
-  private ClienteModel clienteModel;
-
-  @ManyToOne
-  @JoinColumn(name = "id_funcionario", nullable = true)
-  private FuncionarioModel funcionarioModel;
+  @Column(name = "cpf_funcionario", nullable = false)
+  private String cpf_funcionario;
   
-  @ManyToOne
-  @JoinColumn(name = "id_cupom", nullable = true)
-  private PromoModel promoModel;
+  @Column(name = "nome_cupom", nullable = false)
+  private String nome_cupom;
 
   @Column(name = "forma_pagamento", nullable = false)
   private String forma_pagamento;
@@ -50,7 +43,7 @@ public class VendaModel {
   @Column(name = "valor_compra", nullable = false)
   private String valor_compra;
 
-  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
   @Column(name = "data_compra", nullable = false)
   private Date data_compra;
   

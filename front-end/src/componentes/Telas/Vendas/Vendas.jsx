@@ -42,10 +42,10 @@ function Vendas(){
         <thead>
           <tr>
             <th>Id_Vendas</th>
-            <th>Id_Produto</th>
-            <th>Id_Cliente</th>
-            <th>Id_Funcionario</th>
-            <th>Id_Cupom</th>
+            <th>Nome produto</th>
+            <th>CPF cliente</th>
+            <th>CPF funcionario</th>
+            <th>Nome cupom</th>
             <th>Forma de pagamento</th>
             <th>Valor de Compra</th>
             <th>Data da compra</th>
@@ -59,10 +59,10 @@ function Vendas(){
             vendaSCH.map((obj)=>(
               <tr key={obj.data_compra}>
                 <th>{obj.id}</th>
-                <th>{obj.id_produto}</th>
-                <th>{obj.id_cliente}</th>
-                <th>{obj.id_funcionario}</th>
-                <th>{obj.id_cupom}</th>
+                <th>{obj.nome_produto}</th>
+                <th>{obj.cpf_cliente}</th>
+                <th>{obj.cpf_funcionario}</th>
+                <th>{obj.nome_cupom}</th>
                 <th>{obj.forma_pagamento}</th>
                 <th>{obj.valor_compra}</th>
                 <th>{obj.data_compra}</th>
