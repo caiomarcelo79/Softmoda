@@ -1,6 +1,7 @@
 # Gerenciador-de-Loja-de-Roupa
- Spring + React
 
-Projeto finalizado(porém ainda tenho ideias para o futuro)
+## Spring + React
 
-Ainda planejo aplicar sistema de autenticação
+## Versão original do Softmoda e qual não sofrerá nenhuma atualização e contém alguns bugs
+
+### Projeto finalizado
