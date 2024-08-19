@@ -1,5 +1,5 @@
 # Gerenciador-de-Loja-de-Roupa
-## Node.JS(Express) + React
+## Node.JS(Express) + React.JS
 
 ## Projeto em processo de alteração de linguagem
 ### Estou alterando o back-end da linguagem Java(Spring) para JavaScript(Node.JS/Express)
