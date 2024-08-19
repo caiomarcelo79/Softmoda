@@ -1,6 +1,7 @@
 # Gerenciador-de-Loja-de-Roupa
- Spring + React
+## Node.JS(Express) + React
 
-Projeto finalizado(porém ainda tenho ideias para o futuro)
+## Projeto em processo de alteração de linguagem
+### Estou alterando o back-end da linguagem Java(Spring) para JavaScript(Node.JS/Express)
 
-Ainda planejo aplicar sistema de autenticação
+## A antiga versão com Spring ainda estará disponível na branch "versao-antiga"
