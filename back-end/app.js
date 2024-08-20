@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const ClienteRouter = require('./routes/ClienteRouter')
 const FornecedorRouter = require('./routes/FornecedorRouter')
@@ -9,6 +10,9 @@ const PromocaoRouter = require('./routes/PromocaoRouter')
 const VendaRouter = require('./routes/VendaRouter')
 
 // Config
+
+  app.use(cors())
+
   // Body Parser
   app.use(bodyParser.urlencoded({extended: false}))
   app.use(bodyParser.json())
