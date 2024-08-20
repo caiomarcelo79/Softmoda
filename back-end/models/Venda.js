@@ -28,7 +28,7 @@ const Venda = db.sequelize.define('vendas', {
   nome_promocao: {
     type: db.Sequelize.STRING,
     references: {
-      model: 'promocao',
+      model: 'promocoes',
       key: 'nome'
     }
   },
@@ -42,28 +42,28 @@ const Venda = db.sequelize.define('vendas', {
 })
 
 Venda.associate = (models) => {
-  Venda.belongTo(models.Produto, {
+  Venda.belongsTo(models.Produto, {
     foreingKey: 'nome_produto',
     as: 'produto'
   })
 }
 
 Venda.associate = (models) => {
-  Venda.belongTo(models.Cliente, {
+  Venda.belongsTo(models.Cliente, {
     foreingKey: 'cpf_cliente',
     as: 'cliente'
   })
 }
 
 Venda.associate = (models) => {
-  Venda.belongTo(models.Funcionario, {
+  Venda.belongsTo(models.Funcionario, {
     foreingKey: 'cpf_funcionario',
     as: 'funcionario'
   })
 }
 
 Venda.associate = (models) => {
-  Venda.belongTo(models.Promocao, {
+  Venda.belongsTo(models.Promocao, {
     foreingKey: 'nome_promocao',
     as: 'promocao'
   })

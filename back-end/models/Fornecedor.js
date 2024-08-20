@@ -17,6 +17,12 @@ const Fornecedor = db.sequelize.define('fornecedores', {
   endereco: {
     type: db.Sequelize.STRING,
     allowNUll: false
+  },
+  email: {
+    type: db.Sequelize.STRING
+  },
+  telefone: {
+    type: db.Sequelize.STRING
   }
 })
 

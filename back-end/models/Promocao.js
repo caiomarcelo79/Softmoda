@@ -7,7 +7,7 @@ const Promocao = db.sequelize.define('promocoes', {
     unique: true
   },
   desconto: {
-    type: db.Sequelize.STRING,
+    type: db.Sequelize.INTEGER,
     allowNUll: false
   },
   condicoes: {
@@ -15,7 +15,7 @@ const Promocao = db.sequelize.define('promocoes', {
     allowNUll: false
   },
   validade: {
-    type: db.Sequelize.FLOAT,
+    type: db.Sequelize.DATE,
     allowNUll: false
   }
 })

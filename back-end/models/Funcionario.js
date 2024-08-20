@@ -31,7 +31,7 @@ Funcionario.associate = (models) => {
 }
 
 try {
-  const resultado = Produto.sync()
+  const resultado = Funcionario.sync()
   console.log(resultado)
 } catch (error) {
   console.log(error)
