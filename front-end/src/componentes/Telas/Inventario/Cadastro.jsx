@@ -22,11 +22,11 @@ function Cadastro(){
       <form onSubmit={Submit}>
         <h2>Cadastre um produto</h2>
         <br/>
-        <input onChange={Digito} type="text" name="nome" placeholder="Nome" className="form-control"/>
+        <input onChange={Digito} type="text" name="nome" placeholder="Nome" className="form-control" required/>
         <br/>
-        <input onChange={Digito} type="number" name="valor" placeholder="Valor" className="form-control" step="0.010"/>
+        <input onChange={Digito} type="number" name="valor" placeholder="Valor" className="form-control" step="0.010" required/>
         <br/>
-        <input onChange={Digito} type="number" name="quantidade" placeholder="Quantidade" className="form-control"/>
+        <input onChange={Digito} type="number" name="quantidade" placeholder="Quantidade" className="form-control" required/>
         <br/><br/>
 
         <button className="btn btn-primary" type="submit">Cadastrar</button>
