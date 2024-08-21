@@ -1,54 +1,39 @@
+import axios from "axios"
 import { useState } from "react"
 
 function Cadastro(){
 
-  const cliente = {
-    id: "",
-    nome: "",
-    email: "",
-    cpf: "",
-    data_nascimento: "",
-    telefone: ""
+
+
+  const [objCliente, setObjCliente] = useState([])
+
+  function Digito(e){
+    setObjCliente({...objCliente, [e.target.name]:e.target.value})
   }
 
-
-  const [objCliente, setObjCliente] = useState(cliente)
-
-  function Digito(event){
-    setObjCliente({...objCliente, [event.target.name]:event.target.value})
-  }
-
-  function Cadastrar(){
-    fetch("http://localhost:8080/cliente/cadastrar", {
-      method: 'post',
-      body: JSON.stringify(objCliente),
-      headers: {
-        'Content-type':'application/json',
-        'Accept':'application/json'
-      }
-    })
-    alert('O cliente foi cadastrado com sucesso')
-    location.reload()
+  function Submit(e){
+    e.preventDefault()
+    axios.post("http://localhost:8080/cliente/registrar", objCliente)
   }
 
   return(
     <div>
       <br/>
-      <form>
+      <form onSubmit={Submit}>
         <h2>Cadastre o Cliente</h2>
         <br/>
-        <input onChange={Digito} name="nome" type="text" placeholder="Nome Cliente" className="form-control"/>
+        <input onChange={Digito} name="nome" type="text" placeholder="Nome Cliente" className="form-control" required/>
         <br/>
-        <input onChange={Digito} name="email" type="email" placeholder="Email" className="form-control"/>
+        <input onChange={Digito} name="email" type="email" placeholder="Email" className="form-control" required/>
         <br/>
-        <input onChange={Digito} name="cpf" type="text" placeholder="CPF" className="form-control"/>
+        <input onChange={Digito} name="cpf" type="text" placeholder="CPF" className="form-control" required/>
         <br/>
-        <input onChange={Digito} name="data_nascimento" type="date" placeholder="Data Nascimento" className="form-control"/>
+        <input onChange={Digito} name="data_nascimento" type="date" placeholder="Data Nascimento" className="form-control" required/>
         <br/>
-        <input onChange={Digito} name="telefone" type="text" placeholder="Telefone para Contato" className="form-control"/>
+        <input onChange={Digito} name="telefone" type="text" placeholder="Telefone para Contato" className="form-control" required/>
         <br/><br/>
 
-        <button className="btn btn-primary" onClick={Cadastrar}>Cadastrar</button>
+        <button className="btn btn-primary" type="submit">Cadastrar</button>
         <br/><br/>
       </form>
       <br/>

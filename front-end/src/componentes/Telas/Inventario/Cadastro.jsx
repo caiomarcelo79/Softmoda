@@ -13,7 +13,6 @@ function Cadastro(){
   function Submit(e){
     e.preventDefault()
     axios.post("http://localhost:8080/produto/registrar", objProduto)
-
   }
 
   return(

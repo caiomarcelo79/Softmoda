@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
+import axios from "axios"
 
 function Pessoal(){
 
@@ -7,10 +8,11 @@ function Pessoal(){
   
 
   useEffect(()=>{
-    fetch("http://localhost:8080/funcionario/listar")
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => setFuncionarios(retorno_convertido))
-  }, [])
+    axios.get("http://localhost:8080/funcionario/listar")
+    .then((response)=>{
+      setFuncionarios(response.data)
+    })
+  }, [funcionarios])
   
 
   const [search, setSearch] = useState("")
@@ -40,7 +42,6 @@ function Pessoal(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Funcionario</th>
             <th>Nome</th>
             <th>CPF</th>
             <th>Cargo</th>
@@ -54,22 +55,14 @@ function Pessoal(){
           {
             funcionariosSCH.map((obj)=>(
               <tr key={obj.nome}>
-                <th>{obj.id}</th>
                 <th>{obj.nome}</th>
                 <th>{obj.cpf}</th>
                 <th>{obj.cargo}</th>
                 <th>{obj.salario}</th>
                 <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/funcionario/remover/'+obj.id, {
-                  method:'delete',
-                  headers:{
-                    'Content-type':'application/json',
-                    'Accept':'application/json'
-                  }})
+                  axios.delete("http://localhost:8080/funcionario/deletar/"+obj.id)
 
-                  alert('O funcionario foi removido com sucesso')
-                  location.reload()
                 }} 
                   className="btn btn-danger">Excluir</button></th>
               </tr>

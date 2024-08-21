@@ -1,54 +1,38 @@
 import { useState } from "react"
+import axios from "axios"
 
 function Cadastro(){
 
-  const funcionario = {
-    id: "",
-    nome: "",
-    cpf: "",
-    cargo: "",
-    salario: 0,
-    telefone: ""
-  }
   
+  const [objFuncionario, setObjFuncionario] = useState([])
 
-  const [objFuncionario, setObjFuncionario] = useState(funcionario)
-
-  function Digito(event){
-    setObjFuncionario({...objFuncionario, [event.target.name]:event.target.value})
+  function Digito(e){
+    setObjFuncionario({...objFuncionario, [e.target.name]:e.target.value})
   }
 
-  function Cadastrar(){
-    fetch("http://localhost:8080/funcionario/cadastrar", {
-      method: 'post',
-      body: JSON.stringify(objFuncionario),
-      headers: {
-        'Content-type':'application/json',
-        'Accept':'application/json'
-      }
-    })
-    alert('O funcionario foi cadastrado com sucesso')
-    location.reload()
+  function Submit(e){
+    e.preventDefault()
+    axios.post("http://localhost:8080/funcionario/registrar", objFuncionario)
   }
 
   return(
     <div>
       <br/>
-      <form>
+      <form onSubmit={Submit}>
         <h2>Cadastre um Funcionario</h2>
         <br/>
-        <input onChange={Digito} type="text" name="nome" placeholder="Nome" className="form-control"/>
+        <input onChange={Digito} type="text" name="nome" placeholder="Nome" className="form-control" required/>
         <br/>
-        <input onChange={Digito} type="text" name="cpf" placeholder="CPF" className="form-control"/>
+        <input onChange={Digito} type="text" name="cpf" placeholder="CPF" className="form-control" required/>
         <br/>
-        <input onChange={Digito} type="text" name="cargo" placeholder="Cargo" className="form-control"/>
+        <input onChange={Digito} type="text" name="cargo" placeholder="Cargo" className="form-control" required/>
         <br/>
-        <input onChange={Digito} type="number" name="salario" placeholder="Salário" className="form-control" step="0.010"/>
+        <input onChange={Digito} type="number" name="salario" placeholder="Salário" className="form-control" step="0.010" required/>
         <br/>
-        <input onChange={Digito} type="text" name="telefone" placeholder="Telefone" className="form-control"/>
+        <input onChange={Digito} type="text" name="telefone" placeholder="Telefone" className="form-control" required/>
         <br/><br/>
 
-        <button className="btn btn-primary" onClick={Cadastrar}>Cadastrar</button>
+        <button className="btn btn-primary" type="submit">Cadastrar</button>
         <br/><br/>
       </form>
       <br/>

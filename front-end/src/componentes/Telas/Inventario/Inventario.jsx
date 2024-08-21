@@ -4,8 +4,6 @@ import axios from "axios"
 
 function Inventario(){
 
-
-  
   const [produtos, setProdutos] = useState([])
 
 
@@ -56,6 +54,10 @@ function Inventario(){
                 <th>{obj.nome}</th>
                 <th>{obj.quantidade}</th>
                 <th>{obj.valor}</th>
+                <th><button onClick={()=>{
+                  axios.delete("http://localhost:8080/produto/deletar/"+obj.id)
+
+                }} className="btn btn-danger">Excluir</button></th>
               </tr>
             ))
           }
