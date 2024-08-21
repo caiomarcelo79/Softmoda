@@ -30,5 +30,15 @@ router.post("/registrar", (req, res)=>{
   })
 })
 
+// Deletar
+router.delete("/deletar/:id", (req, res)=>{
+  Cliente.destroy ({ where: {'id': req.params.id} }).then(()=>{
+    res.status(200).json({ message: "Cliente deletado com sucesso" })
+  }).catch((err)=>{
+    res.status(500).json({ error: "Erro ao deletar o cliente" })
+  })
+})
+
+
 
 module.exports = router

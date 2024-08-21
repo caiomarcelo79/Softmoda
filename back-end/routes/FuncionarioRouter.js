@@ -30,5 +30,15 @@ router.post("/registrar", (req, res)=>{
   })
 })
 
+// Deletar
+router.delete("/deletar/:id", (req, res)=>{
+  Funcionario.destroy ({ where: {'id': req.params.id} }).then(()=>{
+    res.status(200).json({ message: "Funcionario deletado com sucesso" })
+  }).catch((err)=>{
+    res.status(500).json({ error: "Erro ao deletar o funcionario" })
+  })
+})
+
+
 
 module.exports = router

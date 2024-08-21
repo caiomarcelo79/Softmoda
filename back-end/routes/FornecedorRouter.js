@@ -31,5 +31,15 @@ router.post("/registrar", (req, res)=>{
   })
 })
 
+// Deletar
+router.delete("/deletar/:id", (req, res)=>{
+  Fornecedor.destroy ({ where: {'id': req.params.id} }).then(()=>{
+    res.status(200).json({ message: "Fornecedor deletado com sucesso" })
+  }).catch((err)=>{
+    res.status(500).json({ error: "Erro ao deletar o fornecedor" })
+  })
+})
+
+
 
 module.exports = router
