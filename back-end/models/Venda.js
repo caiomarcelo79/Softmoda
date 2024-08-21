@@ -36,6 +36,9 @@ const Venda = db.sequelize.define('vendas', {
     type: db.Sequelize.STRING,
     allowNUll: false
   },
+  valor_compra: {
+    type: db.Sequelize.STRING
+  },
   data_compra: {
     type: db.Sequelize.DATE
   }

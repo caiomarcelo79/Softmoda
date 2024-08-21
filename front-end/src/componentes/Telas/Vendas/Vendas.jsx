@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
+import axios from "axios"
 
 function Vendas(){
 
@@ -7,10 +8,11 @@ function Vendas(){
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/venda/listar")
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => setVenda(retorno_convertido))
-  }, [])
+    axios.get("http://localhost:8080/venda/listar")
+    .then((response)=>{
+      setVenda(response.data)
+    })
+  }, [venda])
   
 
   const [search, setSearch] = useState("")
@@ -40,11 +42,10 @@ function Vendas(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Vendas</th>
             <th>Nome produto</th>
             <th>CPF cliente</th>
             <th>CPF funcionario</th>
-            <th>Nome cupom</th>
+            <th>Nome promocao</th>
             <th>Forma de pagamento</th>
             <th>Valor de Compra</th>
             <th>Data da compra</th>
@@ -56,24 +57,16 @@ function Vendas(){
           {
             vendaSCH.map((obj)=>(
               <tr key={obj.data_compra}>
-                <th>{obj.id}</th>
                 <th>{obj.nome_produto}</th>
                 <th>{obj.cpf_cliente}</th>
                 <th>{obj.cpf_funcionario}</th>
-                <th>{obj.nome_cupom}</th>
+                <th>{obj.nome_promocao || "vazio"}</th>
                 <th>{obj.forma_pagamento}</th>
-                <th>{obj.valor_compra}</th>
+                <th>{obj.valor_compra || "vazio"}</th>
                 <th>{obj.data_compra}</th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/venda/remover/'+obj.id, {
-                  method:'delete',
-                  headers:{
-                    'Content-type':'application/json',
-                    'Accept':'application/json'
-                  }})
+                  axios.delete("http://localhost:8080/venda/deletar/"+obj.id)
 
-                  alert('A venda foi removida com sucesso')
-                  location.reload()
                 }} 
                   className="btn btn-danger">Excluir</button></th>
               </tr>

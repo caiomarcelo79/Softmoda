@@ -1,6 +1,8 @@
 const express = require("express")
 const Venda = require("../models/Venda")
 const router = express.Router()
+const Produto = require("../models/Produto")
+const { where, Op } = require("sequelize")
 
 
 
@@ -16,20 +18,49 @@ router.get("/listar", (req, res)=>{
 })
 
 // Registrar
-router.post("/registrar", (req, res)=>{
-  Venda.create({
-    nome_produto: req.body.nome_produto,
-    cpf_cliente: req.body.cpf_cliente,
-    cpf_funcionario: req.body.cpf_funcionario,
-    nome_promocao: req.body.nome_promocao,
-    forma_pagamento: req.body.forma_pagamento,
-    data_compra: Date.now()
-  }).then(()=>{
-    res.status(201).json({ message: "Venda registrada com sucesso" })
-  }).catch(()=>{
-    res.status(500).json({ error: "Erro ao registrar a venda, verifique se os campos foram preenchidos corretamente" })
-  })
+router.post("/registrar", async (req, res)=>{
+
+  try {
+    const nome_produto = req.body.nome_produto
+
+
+    const produto = await Produto.findOne({
+      attributes: ['valor', 'quantidade'],
+      where: {
+        nome: {
+          [Op.eq]: nome_produto
+        }
+      }
+    })
+
+    const retirada = await Produto.update({
+      quantidade: produto.quantidade - 1
+      }, {
+        where: {'nome': nome_produto}
+      }
+    ).then(()=>{
+      console.log("produto retirado com sucesso")
+    }).catch((err)=>{
+      console.log("Erro ao retirar o produto")
+    })
+  
+    const venda = await Venda.create({
+      nome_produto: nome_produto,
+      cpf_cliente: req.body.cpf_cliente,
+      cpf_funcionario: req.body.cpf_funcionario,
+      nome_promocao: req.body.nome_promocao,
+      forma_pagamento: req.body.forma_pagamento,
+      valor_compra: produto.valor,
+      data_compra: Date.now()
+    })
+    
+    res.status(201).json({ message: "Venda registrada com sucesso", venda })
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao registrar a venda, verifique se os campos foram preenchidos corretamente"})
+  }
+  
 })
+
 
 // Deletar
 router.delete("/deletar/:id", (req, res)=>{

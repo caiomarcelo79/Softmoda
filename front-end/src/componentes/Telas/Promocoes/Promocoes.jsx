@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
+import axios from "axios"
 
 function Promocoes(){
 
-  const [promo, setPromo] = useState([])
+  const [promocao, setPromocao] = useState([])
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/promo/listar")
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => setPromo(retorno_convertido))
-  }, [])
+    axios.get("http://localhost:8080/promocao/listar")
+    .then((response)=>{
+      setPromocao(response.data)
+    })
+  }, [promocao])
   
 
   const [search, setSearch] = useState("")
@@ -19,7 +21,7 @@ function Promocoes(){
     setSearch(event.target.value)
   }
 
-  const promoSCH = promo.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
+  const promocaoSCH = promocao.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
   
 
@@ -40,7 +42,6 @@ function Promocoes(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Promocao</th>
             <th>Promoção</th>
             <th>Desconto</th>
             <th>Validade</th>
@@ -51,23 +52,15 @@ function Promocoes(){
 
         <tbody>
           {
-            promoSCH.map((obj)=>(
+            promocaoSCH.map((obj)=>(
               <tr key={obj.nome}>
-                <th>{obj.id}</th>
                 <th>{obj.nome}</th>
                 <th>{obj.desconto}</th>
                 <th>{obj.validade}</th>
                 <th>{obj.condicoes}</th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/promo/remover/'+obj.id, {
-                  method:'delete',
-                  headers:{
-                    'Content-type':'application/json',
-                    'Accept':'application/json'
-                  }})
+                  axios.delete("http://localhost:8080/promocao/deletar/"+obj.id)
 
-                  alert('O produto foi removido com sucesso')
-                  location.reload()
                 }} 
                   className="btn btn-danger">Excluir</button></th>
               </tr>

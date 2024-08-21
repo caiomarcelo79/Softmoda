@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
+import axios from "axios"
 
 function Fornecedores(){
 
@@ -7,12 +8,12 @@ function Fornecedores(){
 
 
   useEffect(()=>{
-    fetch("http://localhost:8080/fornecedor/listar")
-    .then(retorno => retorno.json())
-    .then(retorno_convertido => setFornecedor(retorno_convertido))
-  }, [])
+    axios.get("http://localhost:8080/fornecedor/listar")
+    .then((response)=>{
+      setFornecedor(response.data)
+    })
+  }, [fornecedor])
   
-
   const [search, setSearch] = useState("")
 
   function pesquisa(event){
@@ -40,11 +41,12 @@ function Fornecedores(){
       <table className="table">
         <thead>
           <tr>
-            <th>Id_Fornecedor</th>
             <th>CNPJ</th>
             <th>Razão social</th>
             <th>Fantasia</th>
             <th>Endereço</th>
+            <th>Email</th>
+            <th>Telefone</th>
             <th></th>
           </tr>
         </thead>
@@ -53,21 +55,15 @@ function Fornecedores(){
           {
             fornecedorSCH.map((obj)=>(
               <tr key={obj.fantasia}>
-                <th>{obj.id}</th>
                 <th>{obj.cnpj}</th>
                 <th>{obj.razao_social}</th>
                 <th>{obj.fantasia}</th>
                 <th>{obj.endereco}</th>
+                <th>{obj.email}</th>
+                <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
-                  fetch('http://localhost:8080/fornecedor/remover/'+obj.id, {
-                  method:'delete',
-                  headers:{
-                    'Content-type':'application/json',
-                    'Accept':'application/json'
-                  }})
+                  axios.delete("http://localhost:8080/fornecedor/deletar/"+obj.id)
 
-                  alert('O fornecedor foi removido com sucesso')
-                  location.reload()
                 }} 
                   className="btn btn-danger">Excluir</button></th>
               </tr>
