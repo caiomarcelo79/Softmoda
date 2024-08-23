@@ -44,6 +44,7 @@ function Inventario(){
             <th>Quantidade</th>
             <th>Valor</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
 
@@ -58,6 +59,10 @@ function Inventario(){
                   axios.delete("http://localhost:8080/produto/deletar/"+obj.id)
 
                 }} className="btn btn-danger">Excluir</button></th>
+                <th><button onClick={()=>{
+                  axios.get("http://localhost:8080/produto/incrementar/"+obj.id)
+
+                }} className="btn btn-success">Incrementar</button></th>
               </tr>
             ))
           }

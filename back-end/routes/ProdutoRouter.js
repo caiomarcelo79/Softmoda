@@ -1,6 +1,6 @@
 const express = require("express")
 const Produto = require("../models/Produto");
-const { where } = require("sequelize");
+const { where, Op } = require("sequelize");
 const router = express.Router()
 
 
@@ -27,6 +27,31 @@ router.post("/registrar", (req, res)=>{
   }).catch(()=>{
     res.status(500).json({ error: "Erro ao registrar o produto, verifique se os campos foram preenchidos corretamente" })
   })
+})
+
+// Incrementar quantidade
+router.get("/incrementar/:id", async (req, res)=>{
+
+  const produto = await Produto.findOne({
+    attributes: ['quantidade'],
+    where: {
+      id: {
+        [Op.eq]: req.params.id
+      }
+    }
+  })
+  console.log(produto.quantidade)
+
+  await Produto.update({
+    quantidade: produto.quantidade + 1
+  }, {
+    where: {'id': req.params.id}
+  }).then(()=>{
+    res.status(201).json({ message: "Produto incrementado com sucesso" })
+  }).catch(()=>{
+    res.status(500).json({ error: "Erro ao incrementar o produto" })
+  })
+  
 })
 
 // Deletar
