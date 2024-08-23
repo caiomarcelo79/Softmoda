@@ -1,82 +1,87 @@
+import axios from 'axios'
 import { useState, useEffect } from 'react'
-import Chart from 'react-apexcharts'
+import ApexChart from "react-apexcharts"
 
 function Relatorios() {
-  const [inicioData, setInicioData] = useState('')
-  const [fimData, setFimData] = useState('')
   const [venda, setVenda] = useState([])
-  const [filtradoVenda, setFiltradoVenda] = useState([])
-  const [funcionarios, setFuncionarios] = useState([])
-  const [receitaTotal, setReceitaTotal] = useState(0.00)
-  const [despesaTotal, setDespesaTotal] = useState(0.00)
+  const [funcionario, setFuncionario] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:8080/venda/listar")
-      .then((retorno) => retorno.json())
-      .then((retorno_convertido) => setVenda(retorno_convertido))
+    axios.get("http://localhost:8080/venda/listar")
+      .then((response) => {
+        setVenda(response.data)
+      })
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:8080/funcionario/listar")
-      .then(retorno => retorno.json())
-      .then(retorno_convertido => setFuncionarios(retorno_convertido))
+    axios.get("http://localhost:8080/funcionario/listar")
+      .then((response) => {
+        setFuncionario(response.data)
+      })
   }, [])
 
-  useEffect(() => {
-    filtrarVendas()
-  }, [inicioData, fimData, venda])
 
-  useEffect(() => {
-    calcularDespesas()
-  }, [funcionarios])
+  const calcularSalarioTotal = () => {
+    var salarioTotal = 0
 
-  const filtrarVendas = () => {
-    if (!inicioData || !fimData) {
-      setFiltradoVenda(venda)
-      calcularReceita(venda)
-      return
+    funcionario.forEach((obj) => {
+      salarioTotal += parseFloat(obj.salario)
+    })
+
+
+    return salarioTotal
+  }
+
+  const salarioTotal = calcularSalarioTotal()
+
+  const grupoVendasPorMes = () => {
+    const vendasPorMes = {}
+
+    venda.forEach((obj) => {
+      const data = new Date(obj.data_compra)
+      const mes = `${data.getFullYear()}-${data.getMonth() + 1}`
+
+      const fatura = parseFloat(obj.valor_compra)
+
+      if (!vendasPorMes[mes]) {
+        vendasPorMes[mes] = 0
+      }
+
+      vendasPorMes[mes] += fatura
+    })
+
+    return vendasPorMes
+  }
+
+  const vendasPorMes = grupoVendasPorMes()
+
+  const calcularLucrosPorMes = () => {
+    const lucrosPorMes = {}
+    Object.keys(vendasPorMes).forEach((mes) => {
+      const vendas = vendasPorMes[mes]
+      const lucro = vendas - salarioTotal
+      lucrosPorMes[mes] = lucro
+
+    })
+
+    return lucrosPorMes
+  }
+
+  const lucrosPorMes = calcularLucrosPorMes()
+
+  const series = [
+    {
+      data: Object.values(lucrosPorMes)
     }
-    const inicio = new Date(inicioData)
-    const fim = new Date(fimData)
-    const vendasFiltradas = venda.filter((venda) => {
-      const dataVenda = new Date(venda.data)
-      return dataVenda >= inicio && dataVenda <= fim
-    })
-    setFiltradoVenda(vendasFiltradas)
-    calcularReceita(vendasFiltradas)
-  }
+  ]
 
-  const calcularReceita = (vendas) => {
-    let total = 0
-    vendas.forEach((obj) => {
-      total += parseFloat(obj.valor_compra)
-    })
-    setReceitaTotal(total)
-  }
-
-  const calcularDespesas = () => {
-    let total = 0
-    funcionarios.forEach((obj) => {
-      total += parseFloat(obj.salario)
-    })
-    setDespesaTotal(total)
-  }
-
-  const lucroLiquido = receitaTotal - despesaTotal
-
-  filtradoVenda.map(venda => console.log(venda.data))
-
-  const chartData = {
-    series: [{
-      name: 'Vendas',
-      data: filtradoVenda.map(venda => parseFloat(venda.valor_compra))
-    }],
-    options: {
-      chart: {
-        type: 'bar'
-      },
-      xaxis: {
-        categories: filtradoVenda.map(venda => new Date(venda.data))
+  const options = {
+    xaxis: {
+      categories: Object.keys(lucrosPorMes)
+    },
+    yaxis: {
+      title: {
+        text: "Lucro (R$)"
       }
     }
   }
@@ -85,46 +90,19 @@ function Relatorios() {
     <div>
       <h1>Relatórios Financeiros</h1>
 
-      <div className="filters">
-        <h2>Filtrar Relatórios</h2>
-        <label>
-          Data de Início:
-          <input 
-            type="month" 
-            value={inicioData} 
-            onChange={(e) => setInicioData(e.target.value)} 
-            className="form-control" 
-          />
-        </label>
-        <label>
-          Data de Fim:
-          <input 
-            type="month" 
-            value={fimData} 
-            onChange={(e) => setFimData(e.target.value)} 
-            className="form-control" 
-          />
-        </label>
-        <br/><br/>
-        <button onClick={filtrarVendas} className="btn btn-primary">Filtrar</button>
-      </div>
-      <br/>
-
-      <div>
-        <h2>Resumo Financeiro</h2>
-        <p>Receita Total: R$ {receitaTotal.toFixed(2)}</p>
-        <p>Despesas Totais: R$ {despesaTotal.toFixed(2)}</p>
-        <p>Lucro Líquido: R$ {lucroLiquido.toFixed(2)}</p>
-      </div>
-      <br/>
-
       <div>
         <h2>Lucros</h2>
-        <Chart options={chartData.options} series={chartData.series} type="bar" height={350} />
+        <ApexChart
+          options={options}
+          series={series}
+          type="area"
+          width={1000}
+          height={500}
+        />
       </div>
       <br/>
     </div>
-  )
+  );
 }
 
-export default Relatorios
+export default Relatorios;
