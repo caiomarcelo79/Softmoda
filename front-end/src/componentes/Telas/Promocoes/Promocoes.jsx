@@ -23,7 +23,10 @@ function Promocoes(){
 
   const promocaoSCH = promocao.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
-  
+  const formatarData = (data) => {
+    const partes = data.slice(0, 10).split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`
+  }
 
 
   return(
@@ -37,11 +40,13 @@ function Promocoes(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="Nome da promoção"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>Promoção</th>
             <th>Desconto</th>
             <th>Validade</th>
@@ -52,11 +57,12 @@ function Promocoes(){
 
         <tbody>
           {
-            promocaoSCH.map((obj)=>(
-              <tr key={obj.nome}>
+            promocaoSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.nome}</th>
-                <th>{obj.desconto}</th>
-                <th>{obj.validade}</th>
+                <th>{obj.desconto}%</th>
+                <th>{formatarData(obj.validade)}</th>
                 <th>{obj.condicoes}</th>
                 <th><button onClick={()=>{
                   axios.delete("http://localhost:8080/promocao/deletar/"+obj.id)

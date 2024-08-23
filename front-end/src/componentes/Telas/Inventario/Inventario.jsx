@@ -35,11 +35,13 @@ function Inventario(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="Nome do produto"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>Produto</th>
             <th>Quantidade</th>
             <th>Valor</th>
@@ -50,8 +52,9 @@ function Inventario(){
 
         <tbody>
           {
-            produtosSCH.map((obj)=>(
-              <tr key={obj.nome}>
+            produtosSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.nome}</th>
                 <th>{obj.quantidade}</th>
                 <th>{obj.valor}</th>

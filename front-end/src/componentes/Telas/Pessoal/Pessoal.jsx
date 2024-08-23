@@ -37,11 +37,13 @@ function Pessoal(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="Nome do funcionário"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>Nome</th>
             <th>CPF</th>
             <th>Cargo</th>
@@ -53,8 +55,9 @@ function Pessoal(){
 
         <tbody>
           {
-            funcionariosSCH.map((obj)=>(
-              <tr key={obj.nome}>
+            funcionariosSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.nome}</th>
                 <th>{obj.cpf}</th>
                 <th>{obj.cargo}</th>

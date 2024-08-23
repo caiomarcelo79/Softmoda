@@ -23,8 +23,11 @@ function Clientes(){
 
   const clientesSCH = clientes.filter(obj => obj.nome.toLowerCase().includes(search.toLowerCase()))
 
+  const formatarData = (data) => {
+    const partes = data.slice(0, 10).split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`
+  }
   
-
 
   return(
     <div>
@@ -37,11 +40,13 @@ function Clientes(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="Nome do cliente"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>Nome</th>
             <th>Email</th>
             <th>CPF</th>
@@ -53,12 +58,13 @@ function Clientes(){
 
         <tbody>
           {
-            clientesSCH.map((obj)=>(
-              <tr key={obj.nome}>
+            clientesSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.nome}</th>
                 <th>{obj.email}</th>
                 <th>{obj.cpf}</th>
-                <th>{obj.data_nascimento}</th>
+                <th>{formatarData(obj.data_nascimento)}</th>
                 <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
                   axios.delete("http://localhost:8080/cliente/deletar/"+obj.id)

@@ -21,9 +21,12 @@ function Vendas(){
     setSearch(event.target.value)
   }
 
-  const vendaSCH = venda.filter(obj => obj.data_compra.toLowerCase().includes(search.toLowerCase()))
+  const vendaSCH = venda.filter(obj => obj.cpf_cliente.toLowerCase().includes(search.toLowerCase()))
 
-  
+  const formatarData = (data) => {
+    const partes = data.slice(0, 10).split("-");
+    return `${partes[2]}/${partes[1]}/${partes[0]}`
+  }
 
 
   return(
@@ -37,11 +40,13 @@ function Vendas(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="CPF do cliente"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>Nome produto</th>
             <th>CPF cliente</th>
             <th>CPF funcionario</th>
@@ -55,15 +60,16 @@ function Vendas(){
 
         <tbody>
           {
-            vendaSCH.map((obj)=>(
-              <tr key={obj.data_compra}>
+            vendaSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.nome_produto}</th>
                 <th>{obj.cpf_cliente}</th>
                 <th>{obj.cpf_funcionario}</th>
                 <th>{obj.nome_promocao || "vazio"}</th>
                 <th>{obj.forma_pagamento}</th>
                 <th>{obj.valor_compra || "vazio"}</th>
-                <th>{obj.data_compra}</th>
+                <th>{formatarData(obj.data_compra)}</th>
                 <th><button onClick={()=>{
                   axios.delete("http://localhost:8080/venda/deletar/"+obj.id)
 

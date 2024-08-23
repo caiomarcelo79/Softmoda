@@ -36,11 +36,13 @@ function Fornecedores(){
       type="search"
       value={search}
       onChange={pesquisa}
+      placeholder="Nome fantasia"
       />
       <br/>
       <table className="table">
         <thead>
           <tr>
+            <th></th>
             <th>CNPJ</th>
             <th>Razão social</th>
             <th>Fantasia</th>
@@ -53,8 +55,9 @@ function Fornecedores(){
 
         <tbody>
           {
-            fornecedorSCH.map((obj)=>(
-              <tr key={obj.fantasia}>
+            fornecedorSCH.map((obj, index)=>(
+              <tr key={index}>
+                <th>#{index + 1}</th>
                 <th>{obj.cnpj}</th>
                 <th>{obj.razao_social}</th>
                 <th>{obj.fantasia}</th>
