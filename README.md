@@ -3,6 +3,7 @@
 
 ### ✅ Projeto Finalizado
 #### ✨ Sujeito a futuras alterações e incrementos
+## OBS: Projeto está passando por uma alteração de React.JS para Next.JS(Framework do React.JS). Por enquanto a versão com React.JS se encontra na pasta "front-end_og"
 
 > **Nota:** A versão antiga, desenvolvida com Spring, ainda está disponível na branch [_versao-antiga_](https://github.com/caiomarcelo79/Softmoda/tree/antiga-versao).
 
