@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Clientes(){
 
@@ -8,7 +9,7 @@ function Clientes(){
 
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/cliente/listar")
+    axios.get(`${baseUrl}/cliente/listar`)
     .then((response)=>{
       setClientes(response.data)
     })
@@ -67,7 +68,7 @@ function Clientes(){
                 <th>{formatarData(obj.data_nascimento)}</th>
                 <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/cliente/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/cliente/deletar/${obj.id}`)
                 }} 
                   className="btn btn-danger">Excluir</button></th>
               </tr>

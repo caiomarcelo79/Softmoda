@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Cadastro(){
 
@@ -12,7 +13,7 @@ function Cadastro(){
 
   function Submit(e){
     e.preventDefault()
-    axios.post("http://localhost:8080/funcionario/registrar", objFuncionario)
+    axios.post(`${baseUrl}/funcionario/registrar`, objFuncionario)
   }
 
   return(

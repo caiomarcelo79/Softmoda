@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Inventario(){
 
@@ -8,7 +9,7 @@ function Inventario(){
 
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/produto/listar")
+    axios.get(`${baseUrl}/produto/listar`)
     .then((response)=>{
       setProdutos(response.data)
     })
@@ -59,11 +60,11 @@ function Inventario(){
                 <th>{obj.quantidade}</th>
                 <th>{obj.valor}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/produto/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/produto/deletar/${obj.id}`)
 
                 }} className="btn btn-danger">Excluir</button></th>
                 <th><button onClick={()=>{
-                  axios.get("http://localhost:8080/produto/incrementar/"+obj.id)
+                  axios.get(`${baseUrl}/produto/incrementar/${obj.id}`)
 
                 }} className="btn btn-success">Incrementar</button></th>
               </tr>

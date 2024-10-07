@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Promocoes(){
 
@@ -8,7 +9,7 @@ function Promocoes(){
 
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/promocao/listar")
+    axios.get(`${baseUrl}/promocao/listar`)
     .then((response)=>{
       setPromocao(response.data)
     })
@@ -65,7 +66,7 @@ function Promocoes(){
                 <th>{formatarData(obj.validade)}</th>
                 <th>{obj.condicoes}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/promocao/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/promocao/deletar/${obj.id}`)
 
                 }} 
                   className="btn btn-danger">Excluir</button></th>

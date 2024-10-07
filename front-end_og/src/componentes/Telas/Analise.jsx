@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import ApexChart from "react-apexcharts";
+import baseUrl from "../../Globais";
 
 
 function Analise() {
   const [venda, setVenda] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/venda/listar")
+    axios.get(`${baseUrl}/venda/listar`)
     .then((response)=>{
       setVenda(response.data)
     })

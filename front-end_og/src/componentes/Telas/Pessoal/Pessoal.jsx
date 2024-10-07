@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Pessoal(){
 
@@ -8,7 +9,7 @@ function Pessoal(){
   
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/funcionario/listar")
+    axios.get(`${baseUrl}/funcionario/listar`)
     .then((response)=>{
       setFuncionarios(response.data)
     })
@@ -64,7 +65,7 @@ function Pessoal(){
                 <th>{obj.salario}</th>
                 <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/funcionario/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/funcionario/deletar/${obj.id}`)
 
                 }} 
                   className="btn btn-danger">Excluir</button></th>

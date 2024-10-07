@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Fornecedores(){
 
@@ -8,7 +9,7 @@ function Fornecedores(){
 
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/fornecedor/listar")
+    axios.get(`${baseUrl}/fornecedor/listar`)
     .then((response)=>{
       setFornecedor(response.data)
     })
@@ -65,7 +66,7 @@ function Fornecedores(){
                 <th>{obj.email}</th>
                 <th>{obj.telefone}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/fornecedor/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/fornecedor/deletar/${obj.id}`)
 
                 }} 
                   className="btn btn-danger">Excluir</button></th>

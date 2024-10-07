@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cadastro from "./Cadastro"
 import axios from "axios"
+import baseUrl from "../../../Globais"
 
 function Vendas(){
 
@@ -8,7 +9,7 @@ function Vendas(){
 
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/venda/listar")
+    axios.get(`${baseUrl}/venda/listar`)
     .then((response)=>{
       setVenda(response.data)
     })
@@ -71,7 +72,7 @@ function Vendas(){
                 <th>{obj.valor_compra || "vazio"}</th>
                 <th>{formatarData(obj.data_compra)}</th>
                 <th><button onClick={()=>{
-                  axios.delete("http://localhost:8080/venda/deletar/"+obj.id)
+                  axios.delete(`${baseUrl}/venda/deletar/${obj.id}`)
 
                 }} 
                   className="btn btn-danger">Excluir</button></th>

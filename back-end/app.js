@@ -8,6 +8,7 @@ const FuncionarioRouter = require('./routes/FuncionarioRouter')
 const ProdutoRouter = require('./routes/ProdutoRouter')
 const PromocaoRouter = require('./routes/PromocaoRouter')
 const VendaRouter = require('./routes/VendaRouter')
+const port = process.env.PORT || 8080
 
 // Config
 
@@ -28,11 +29,10 @@ const VendaRouter = require('./routes/VendaRouter')
   app.use("/promocao", PromocaoRouter)
   app.use("/venda", VendaRouter)
 
-  app.use("/bem-vindo", (req, res)=>{
-    res.send("Olá caio, seja bem vindo, sua aplicação está rodando")
+  app.use("/", (req, res)=>{
+    return res.json("Seja bem vindo, sua aplicação está rodando")
   })
 
-
-app.listen(8080, ()=>{
+app.listen(port, ()=>{
   console.log("Servidor rodando na porta 8080")
 })

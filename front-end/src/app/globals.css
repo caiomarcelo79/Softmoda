@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 :root {
+  --backTop: #ececec;
+  --primaryBack: #0085ff;
+  --secondaryBack: #0029ff;
+  --terciaryBack: #2400ff;
+  --primaryText: #1e1e1e;
+  --secondaryText: #ffffff;
+
   --background: #ffffff;
-  --primary: #00319c;
+  --primary: #1e1e1e;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,8 +21,15 @@
   }
 }
 
+@font-face {
+  font-family: "InterBoldItalic";
+  src: url("public/inter/Inter_28pt-BoldItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
 body {
-  color: var(--primary);
+  color: var(--primaryText);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }

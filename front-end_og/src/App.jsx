@@ -4,8 +4,6 @@ import Menu from './componentes/Menu/Menu'
 import Navbar from './componentes/Navbar'
 
 
-
-
 function App() {
 
   return (

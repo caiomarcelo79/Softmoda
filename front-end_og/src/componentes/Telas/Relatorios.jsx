@@ -1,20 +1,21 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import ApexChart from "react-apexcharts"
+import baseUrl from '../../Globais'
 
 function Relatorios() {
   const [venda, setVenda] = useState([])
   const [funcionario, setFuncionario] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:8080/venda/listar")
+    axios.get(`${baseUrl}/venda/listar`)
       .then((response) => {
         setVenda(response.data)
       })
   }, [])
 
   useEffect(() => {
-    axios.get("http://localhost:8080/funcionario/listar")
+    axios.get(`${baseUrl}/funcionario/listar`)
       .then((response) => {
         setFuncionario(response.data)
       })
