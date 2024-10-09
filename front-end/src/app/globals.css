@@ -22,10 +22,9 @@
 }
 
 @font-face {
-  font-family: "InterBoldItalic";
-  src: url("../public/inter/Inter_28pt-BoldItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
+  font-family: "Inter";
+  src: url("../public/inter/Inter-VariableFont_opsz\,wght.ttf")
+    format("truetype");
 }
 
 body {

@@ -1,0 +1,39 @@
+:root {
+  --colorSystem: purple;
+}
+
+.containerStyle {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 1s;
+}
+
+.containerStyle:hover .textStyle {
+  text-shadow: 1px 20px 3px rgb(0 0 0 / 0.6);
+  transform: translate(0px, -20px);
+}
+
+.imageStyle {
+  width: 100vh;
+  height: 85vh;
+  object-fit: cover;
+}
+
+.colorStyle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.textStyle {
+  position: absolute;
+  font-size: 8vh;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  transition: 1s;
+}

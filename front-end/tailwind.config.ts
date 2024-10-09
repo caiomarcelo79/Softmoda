@@ -17,7 +17,7 @@ const config: Config = {
         secondaryText: 'var(--secondaryText)',
       },
       fontFamily: {
-        inter: ['InterBoldItalic', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
       },
     },
   },
